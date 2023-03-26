@@ -1,0 +1,39 @@
+Chicken Wings
+starter
+10.50
+Soup of the Day
+starter
+8.95
+Caesar Salad
+starter
+9.75
+Beef Burger
+main
+14.50
+Fish and Chips
+main
+16.25
+Penne Alla Vodka
+main
+12.95
+Cheesecake
+last
+8.50
+Ice Cream Sundae
+last
+7.25
+Soda
+drink
+3.00
+Coffee
+drink
+3.00
+Tea
+drink
+2.00
+Water
+drink
+1.50
+Beer
+drink
+5.00
