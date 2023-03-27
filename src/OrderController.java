@@ -16,7 +16,7 @@ public class OrderController {
     @FXML
     private Rectangle starterRect;
     @FXML
-    private Label totalLabel;
+    private Label totalCost;
 
     public void initialize() {
         int rowIndex = 1;
