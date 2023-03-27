@@ -9,7 +9,7 @@ import java.util.List;
  * but it is out of scope for this assignment.
  */
 public class Inventory {
-    private final List<Item> inventory;
+    final List<Item> inventory;
 
     /**
      * Instantiates a new Inventory.

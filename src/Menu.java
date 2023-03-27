@@ -1,5 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Menu extends Inventory {
@@ -35,5 +37,28 @@ public class Menu extends Inventory {
             }
         }
         input.close();
+    }
+    public List<RestaurantItem> getItemsByType(String type) {
+        List<RestaurantItem> items = new ArrayList<>();
+        for (Item item : this.inventory) {
+            if (item instanceof RestaurantItem restaurantItem) {
+                if (restaurantItem.getItemType().equals(type)) {
+                    items.add(restaurantItem);
+                }
+            }
+        }
+        return items;
+    }
+    public int getNumberOfItems() {
+        return this.inventory.size();
+    }
+    public List<RestaurantItem> getItems() {
+        List<RestaurantItem> items = new ArrayList<>();
+        for (Item item : this.inventory) {
+            if (item instanceof RestaurantItem restaurantItem) {
+                items.add(restaurantItem);
+            }
+        }
+        return items;
     }
 }
