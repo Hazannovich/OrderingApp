@@ -76,7 +76,6 @@ public class OrderController {
         menuGrid.add(price, 1, rowIndex);
         menuGrid.add(quantity, 2, rowIndex);
         menuGrid.add(add, 3, rowIndex);
-        // Set preferred height for all rows to 30 pixels
     }
 
     @FXML
