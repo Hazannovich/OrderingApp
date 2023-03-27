@@ -37,3 +37,21 @@ drink
 Beer
 drink
 5.00
+Wine
+drink
+6.00
+Bread
+starter
+14.50
+steak
+main
+18.50
+Chicken
+main
+16.50
+Pasta
+main
+14.50
+cream cake
+last
+8.50

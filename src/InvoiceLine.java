@@ -4,7 +4,7 @@
 
 public class InvoiceLine {
     private final Item item;
-    private double lineTotal;
+    private int itemQuantity;
 
     /**
      * Instantiates a new Invoice line.
@@ -14,7 +14,7 @@ public class InvoiceLine {
      */
     public InvoiceLine(Item item, int itemQuantity) {
         this.item = item;
-        this.lineTotal = item.getItemPrice() * itemQuantity;
+        this.itemQuantity = itemQuantity;
     }
 
     /**
@@ -23,7 +23,7 @@ public class InvoiceLine {
      * @return the line total
      */
     public double getLineTotal() {
-        return lineTotal;
+        return item.getItemPrice()*itemQuantity;
     }
 
     /**
@@ -32,7 +32,7 @@ public class InvoiceLine {
      * @return the item quantity
      */
     public int getItemQuantity() {
-        return (int)(lineTotal/item.getItemPrice());
+        return itemQuantity;
     }
     public Item getItem() {
         return item;
@@ -42,9 +42,9 @@ public class InvoiceLine {
             System.out.println("Invalid Quantity");
             return;
         }
-        lineTotal += quantity*item.getItemPrice();
+        this.itemQuantity= quantity;
     }
     public String toString() {
-        return item.toString() + " Quantity: " + getItemQuantity() + " Total: " + lineTotal +"$";
+        return item.toString() + " Quantity: " + getItemQuantity() + " Total: " + getLineTotal() +"$";
     }
 }

@@ -1,14 +1,20 @@
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Rectangle;
 
-public class OrderController {
+import javax.swing.*;
+import java.util.HashMap;
 
+import static java.lang.Double.parseDouble;
+
+public class OrderController {
+    private double cart = 0.0;
     private final Menu menu = new Menu("menu.txt");
+    HashMap<Integer, RestaurantItem> itemsHashMap = new HashMap<Integer, RestaurantItem>();
     @FXML
     private GridPane menuGrid;
     @FXML
@@ -17,70 +23,99 @@ public class OrderController {
     private Rectangle starterRect;
     @FXML
     private Label totalCost;
-
+    Order order = new Order();
     public void initialize() {
         int rowIndex = 1;
         for (Item item : menu.getItemsByType("starter")) {
             addItemToGrid(rowIndex++, item);
         }
-        Label mainLabel = new Label("Mains:");
-        Rectangle mainRect = new Rectangle();
-        mainLabel.setFont(starterLabel.getFont());
-        mainRect.setHeight(starterRect.getHeight());
-        mainRect.setWidth(starterRect.getWidth());
-        mainRect.setFill(starterRect.getFill());
-        mainRect.setEffect(starterRect.getEffect());
-        menuGrid.add(mainRect, 0, rowIndex);
-        menuGrid.add(mainLabel, 0, rowIndex++);
+        setHeader("Mains:", rowIndex++);
         for (Item item : menu.getItemsByType("main")) {
             addItemToGrid(rowIndex++, item);
         }
-        Label lastLabel = new Label("Lasts:");
-        Rectangle lastRect = new Rectangle();
-        lastLabel.setFont(starterLabel.getFont());
-        lastRect.setHeight(starterRect.getHeight());
-        lastRect.setWidth(starterRect.getWidth());
-        lastRect.setFill(starterRect.getFill());
-        lastRect.setEffect(starterRect.getEffect());
-        menuGrid.add(lastRect, 0, rowIndex);
-        menuGrid.add(lastLabel, 0, rowIndex++);
+        setHeader("Lasts:", rowIndex++);
         for (Item item : menu.getItemsByType("last")) {
             addItemToGrid(rowIndex++, item);
         }
-        lastLabel = new Label("Drinks:");
-        lastRect = new Rectangle();
-        lastLabel.setFont(starterLabel.getFont());
-        lastRect.setHeight(starterRect.getHeight());
-        lastRect.setWidth(starterRect.getWidth());
-        lastRect.setFill(starterRect.getFill());
-        lastRect.setEffect(starterRect.getEffect());
-        menuGrid.add(lastRect, 0, rowIndex);
-        menuGrid.add(lastLabel, 0, rowIndex++);
+        setHeader("Drinks:", rowIndex++);
         for (Item item : menu.getItemsByType("drink")) {
             addItemToGrid(rowIndex++, item);
         }
     }
 
     private void addItemToGrid(int rowIndex, Item item) {
-        Label name = new Label(item.getItemName());
-        Label price = new Label(item.getItemPrice() + "$");
-        ComboBox quantity = new ComboBox<>();
-        CheckBox add = new CheckBox();
-        name.setStyle("-fx-font-size: 16px;");
-        price.setStyle("-fx-font-size: 16px;");
-        quantity.setStyle("-fx-font-size: 11px;");
-        add.setStyle("-fx-font-size: 16px;");
-        quantity.getItems().addAll(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        MenuRow menuRow = new MenuRow((RestaurantItem) item);
         menuGrid.addRow(rowIndex);
-        menuGrid.add(name, 0, rowIndex);
-        menuGrid.add(price, 1, rowIndex);
-        menuGrid.add(quantity, 2, rowIndex);
-        menuGrid.add(add, 3, rowIndex);
+        menuGrid.add(menuRow.getName(), 0, rowIndex);
+        menuGrid.add(menuRow.getPrice(), 1, rowIndex);
+        menuGrid.add(menuRow.getQuantityBox(), 2, rowIndex);
+        menuGrid.add(menuRow.getAdd(), 3, rowIndex);
+        itemsHashMap.put(rowIndex, (RestaurantItem) item);
+        menuRow.getAdd().setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Integer quantity;
+                if (menuRow.getAdd().isSelected()) {
+                    quantity = (Integer) menuRow.getQuantityBox().getValue();
+                    OrderLine orderLine = new OrderLine(menuRow.getItem(), quantity);
+                    order.addOrderLine(orderLine);
+
+                } else {
+                    OrderLine line = order.findOrderLine(menuRow.getItem());
+                    order.removeOrderLine(line);
+                }
+                totalCost.setText(order.getOrderTotal() + "$");
+            }
+        });
+        menuRow.getQuantityBox().setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                if (menuRow.getAdd().isSelected()) {
+                    order.updateLineQuantity(menuRow.getItem(), (Integer) menuRow.getQuantityBox().getValue());
+                    totalCost.setText(order.getOrderTotal() + "$");
+                }
+            }
+        });
     }
 
     @FXML
     void OrderBtnHandler(ActionEvent event) {
+        // create a text input dialog for ID
+        TextInputDialog idDialog = new TextInputDialog();
+        idDialog.setTitle("Enter ID");
+        idDialog.setHeaderText(null);
+        idDialog.setContentText("Please enter your ID:");
+
+        // create a text input dialog for Name
+        TextInputDialog nameDialog = new TextInputDialog();
+        nameDialog.setTitle("Enter Name");
+        nameDialog.setHeaderText(null);
+        nameDialog.setContentText("Please enter your Name:");
+
+        // show the input dialog boxes
+        idDialog.showAndWait();
+        String userId = idDialog.getResult();
+
+        nameDialog.showAndWait();
+        String userName = nameDialog.getResult();
+
+        // use the entered values
+        System.out.println("User ID: " + userId);
+        System.out.println("User Name: " + userName);
 
     }
 
+    private void setHeader(String headerName, int rowIndex) {
+        Label headerLabel = new Label(headerName);
+        Rectangle headerRect = new Rectangle();
+        headerLabel.setFont(starterLabel.getFont());
+        headerRect.setHeight(starterRect.getHeight());
+        headerRect.setWidth(starterRect.getWidth());
+        headerRect.setFill(starterRect.getFill());
+        headerRect.setEffect(starterRect.getEffect());
+        menuGrid.add(headerRect, 0, rowIndex);
+        menuGrid.add(headerLabel, 0, rowIndex);
+    }
+
 }
+
