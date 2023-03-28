@@ -10,7 +10,7 @@ public class OrderSystem extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("OrderSystem.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
-        stage.setTitle("OrderSystem");
+        stage.setTitle("OrdersSystem");
         stage.setScene(scene);
         stage.show();
     }

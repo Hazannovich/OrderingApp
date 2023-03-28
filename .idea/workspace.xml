@@ -4,15 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e356116-bf93-49b4-9a84-092da2b275d7" name="Changes" comment="Order System Frontend Template">
-      <change afterPath="$PROJECT_DIR$/src/MenuRow.java" afterDir="false" />
+    <list default="true" id="3e356116-bf93-49b4-9a84-092da2b275d7" name="Changes" comment="assets">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/menu.txt" beforeDir="false" afterPath="$PROJECT_DIR$/assets/menu.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Costumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Costumer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Inventory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/InvoiceLine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/InvoiceLine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MenuRow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MenuRow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Order.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/OrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/OrderLine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/OrderLine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/OrderLine.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/OrderSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/OrderSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/RestaurantItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RestaurantItem.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +90,13 @@
       <option name="presentableId" value="Default" />
       <updated>1679822937479</updated>
       <workItem from="1679822938539" duration="27327000" />
-      <workItem from="1679937064716" duration="8073000" />
+      <workItem from="1679937064716" duration="8973000" />
+      <workItem from="1679990417295" duration="617000" />
+      <workItem from="1679992656753" duration="3449000" />
+      <workItem from="1680014471718" duration="9865000" />
+      <workItem from="1680027025182" duration="164000" />
+      <workItem from="1680027208455" duration="235000" />
+      <workItem from="1680027737478" duration="5365000" />
     </task>
     <task id="LOCAL-00001" summary="Order System Backend">
       <created>1679867833105</created>
@@ -116,7 +126,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679913207423</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="System Quantity and add to cart interaction">
+      <created>1679948441871</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1679948441871</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -125,15 +142,26 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Order System Backend" />
     <MESSAGE value="Order System Frontend Template" />
-    <option name="LAST_COMMIT_MESSAGE" value="Order System Frontend Template" />
+    <MESSAGE value="System Quantity and add to cart interaction" />
+    <MESSAGE value="assets" />
+    <option name="LAST_COMMIT_MESSAGE" value="assets" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/OrderController.java</url>
+          <line>37</line>
+          <properties class="OrderController" method="initType">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/OrderSystem.java</url>
-          <line>2</line>
-          <option name="timeStamp" value="1" />
+          <line>6</line>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

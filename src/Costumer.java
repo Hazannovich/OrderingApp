@@ -23,8 +23,9 @@ public class Costumer {
             e.printStackTrace();
             separator = "\\";
         }
+        String filePath = "assets" + separator + "receipts" + separator + name + id + ".txt";
         try {
-            File myObj = new File("assets" + separator + "receipts" + separator + name + id + ".txt");
+            File myObj = new File(filePath);
             if (myObj.createNewFile()) {
                 System.out.println("File created: " + myObj.getName());
             } else {
@@ -35,7 +36,7 @@ public class Costumer {
             e.printStackTrace();
         }
         try {
-            FileWriter myWriter = new FileWriter("filename.txt");
+            FileWriter myWriter = new FileWriter(filePath);
             myWriter.write(order.toString());
             myWriter.close();
         } catch (IOException e) {

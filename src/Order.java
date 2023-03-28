@@ -2,13 +2,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
-    private final List<OrderLine> orderLines;
+    private final List<InvoiceLine> orderLines;
 
     public Order() {
         this.orderLines = new ArrayList<>();
     }
-    public void addOrderLine(OrderLine orderLine) {
-        for (OrderLine line : this.orderLines) {
+
+    public void addOrderLine(InvoiceLine orderLine) {
+        for (InvoiceLine line : this.orderLines) {
             if (line.equals(orderLine)) {
                 line.addItemQuantity(orderLine.getItemQuantity());
                 return;
@@ -16,30 +17,44 @@ public class Order {
         }
         this.orderLines.add(orderLine);
     }
-    public OrderLine findOrderLine(RestaurantItem item) {
-        for (OrderLine line : this.orderLines) {
+
+    public InvoiceLine findOrderLine(Item item) {
+        for (InvoiceLine line : this.orderLines) {
             if (line.getItem().equals(item)) {
                 return line;
             }
         }
         return null;
     }
-    public void removeOrderLine(OrderLine orderLine) {
+
+    public void removeOrderLine(InvoiceLine orderLine) {
         this.orderLines.remove(orderLine);
     }
+
     public double getOrderTotal() {
         double total = 0.0;
-        for (OrderLine line : this.orderLines) {
+        for (InvoiceLine line : this.orderLines) {
             total += line.getLineTotal();
         }
         return total;
     }
+
     public void updateLineQuantity(RestaurantItem item, Integer quantity) {
-        for (OrderLine line : this.orderLines) {
+        for (InvoiceLine line : this.orderLines) {
             if (line.getItem().equals(item)) {
                 line.addItemQuantity(quantity);
                 return;
             }
         }
+    }
+
+    public String toString() {
+        StringBuilder order = new StringBuilder();
+        for (InvoiceLine line : this.orderLines) {
+            order.append(line.toString()).append("\n");
+        }
+        order.append("Total: ").append(getOrderTotal()).append("$\n");
+
+        return order.toString();
     }
 }

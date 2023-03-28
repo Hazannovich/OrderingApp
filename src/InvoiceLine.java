@@ -23,7 +23,7 @@ public class InvoiceLine {
      * @return the line total
      */
     public double getLineTotal() {
-        return item.getItemPrice()*itemQuantity;
+        return item.getItemPrice() * itemQuantity;
     }
 
     /**
@@ -34,17 +34,27 @@ public class InvoiceLine {
     public int getItemQuantity() {
         return itemQuantity;
     }
+
     public Item getItem() {
         return item;
     }
+
     public void addItemQuantity(int quantity) {
         if (quantity <= 0) {
             System.out.println("Invalid Quantity");
             return;
         }
-        this.itemQuantity= quantity;
+        this.itemQuantity = quantity;
     }
+
+    public boolean equals(Object o) {
+        if (!(o instanceof InvoiceLine other)) {
+            return false;
+        }
+        return this.getItem().equals(other.getItem());
+    }
+
     public String toString() {
-        return item.toString() + " Quantity: " + getItemQuantity() + " Total: " + getLineTotal() +"$";
+        return item.toString() + " Quantity: " + getItemQuantity() + " Total: " + getLineTotal() + "$";
     }
 }

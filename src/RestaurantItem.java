@@ -13,11 +13,6 @@ public class RestaurantItem extends Item {
         return this.itemType;
     }
 
-    public String toString() {
-        return super.toString() + " Type: " + this.itemType;
-
-    }
-
     public boolean equals(Object o) {
         if (!(o instanceof RestaurantItem item)) {
             return false;

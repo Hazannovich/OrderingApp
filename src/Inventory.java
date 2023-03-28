@@ -30,6 +30,7 @@ public class Inventory {
         }
         this.inventory.add(item);
     }
+
     public String toString() {
         StringBuilder items = new StringBuilder();
         for (Item item : this.inventory) {
@@ -66,4 +67,5 @@ public class Inventory {
         }
         this.inventory.remove(item);
     }
+
 }
