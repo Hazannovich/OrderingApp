@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e356116-bf93-49b4-9a84-092da2b275d7" name="Changes" comment="Complete">
+    <list default="true" id="3e356116-bf93-49b4-9a84-092da2b275d7" name="Changes" comment="improved costumer checkout handling">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/receipts/.txt" beforeDir="false" afterPath="$PROJECT_DIR$/assets/receipts/.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/OrderingApp/OrderController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OrderingApp/OrderController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/OrderController.java" afterDir="false" />
     </list>
@@ -89,7 +90,7 @@
       <workItem from="1680027208455" duration="235000" />
       <workItem from="1680027737478" duration="5412000" />
       <workItem from="1680098157271" duration="2955000" />
-      <workItem from="1680101259013" duration="756000" />
+      <workItem from="1680101259013" duration="2235000" />
     </task>
     <task id="LOCAL-00001" summary="Order System Backend">
       <created>1679867833105</created>
@@ -133,7 +134,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680038164879</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="improved costumer checkout handling">
+      <created>1680102288097</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1680102288097</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -156,14 +164,15 @@
     <MESSAGE value="System Quantity and add to cart interaction" />
     <MESSAGE value="assets" />
     <MESSAGE value="Complete" />
-    <option name="LAST_COMMIT_MESSAGE" value="Complete" />
+    <MESSAGE value="improved costumer checkout handling" />
+    <option name="LAST_COMMIT_MESSAGE" value="improved costumer checkout handling" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/OrderController.java</url>
-          <line>38</line>
+          <line>39</line>
           <properties class="OrderController" method="initType">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />

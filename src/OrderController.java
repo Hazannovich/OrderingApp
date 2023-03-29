@@ -9,6 +9,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.util.Pair;
 
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class OrderController {
@@ -97,13 +98,16 @@ public class OrderController {
         // show the confirmation dialog and wait for a response
         confirmDialog.get().showAndWait().ifPresent(response -> {
             if (response == confirmButton) {
+                // atomic boolean to check if the name and id are valid in the dialog.
+                // I think it's better than using a boolean and a while loop.
+                AtomicBoolean isValidName = new AtomicBoolean(false);
+                AtomicBoolean isValidID = new AtomicBoolean(false);
                 // create a text input dialog for Name
                 Dialog<Pair<String, String>> dialog = new Dialog<>();
                 dialog.setTitle("Checkout");
                 dialog.setHeaderText("Enter your Personal Details");
                 ButtonType orderButtonType = new ButtonType("Order Now", ButtonData.OK_DONE);
                 dialog.getDialogPane().getButtonTypes().addAll(orderButtonType, ButtonType.CANCEL);
-                // create a new costumer and generate a receipt in assets/receipts
                 GridPane grid = new GridPane();
                 grid.setHgap(10);
                 grid.setVgap(10);
@@ -125,12 +129,16 @@ public class OrderController {
 
                 //TODO: ADD VALIDATION FOR ID AND NAME (ONLY NUMBERS AND LETTERS)
                 costumerName.textProperty().addListener((observable, oldValue, newValue) -> {
-                    orderButton.setDisable(newValue.trim().isEmpty());
+                    isValidName.set(newValue.matches("[a-zA-Z]+") && newValue.trim().length() > 2);
+                    orderButton.setDisable(!isValidName.get() || !isValidID.get());
+                });
+                costumerID.textProperty().addListener((observable, oldValue, newValue) -> {
+                    isValidID.set(newValue.matches("[0-9]+") && newValue.length() == 9);
+                    orderButton.setDisable(!isValidName.get() || !isValidID.get());
                 });
                 dialog.getDialogPane().setContent(grid);
 
-
-// Convert the result to a username-password-pair when the login button is clicked.
+// Convert the result to a name-id-pair when the Order Now button is clicked.
                 dialog.setResultConverter(dialogButton -> {
                     if (dialogButton == orderButtonType) {
                         return new Pair<>(costumerName.getText(), costumerID.getText());
@@ -140,8 +148,9 @@ public class OrderController {
 
                 Optional<Pair<String, String>> result = dialog.showAndWait();
 
-                result.ifPresent(usernamePassword -> {
-                    Costumer costumer = new Costumer(usernamePassword.getKey(), usernamePassword.getValue());
+                result.ifPresent(nameWithID -> {
+                // create a new costumer and generate a receipt in assets/receipts
+                    Costumer costumer = new Costumer(nameWithID.getKey(), nameWithID.getValue());
                     costumer.generateReceipt(order);
                     Alert dialog2 = new Alert(Alert.AlertType.INFORMATION);
                     dialog2.setTitle("Confirmation");

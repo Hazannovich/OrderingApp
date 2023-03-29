@@ -1,0 +1,9 @@
+Item: chicken wings Price: 10.5$ Quantity: 1 Total: 10.5$
+Item: soup of the day Price: 8.95$ Quantity: 1 Total: 8.95$
+Item: caesar salad Price: 9.75$ Quantity: 1 Total: 9.75$
+Item: fish and chips Price: 16.25$ Quantity: 1 Total: 16.25$
+Item: ice cream sundae Price: 7.25$ Quantity: 1 Total: 7.25$
+Item: coffee Price: 3.0$ Quantity: 1 Total: 3.0$
+Item: beer Price: 5.0$ Quantity: 1 Total: 5.0$
+Item: water Price: 1.5$ Quantity: 1 Total: 1.5$
+Total: 62.2$
