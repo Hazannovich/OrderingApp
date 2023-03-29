@@ -1,0 +1,5 @@
+Item: pasta Price: 14.5$ Quantity: 1 Total: 14.5$
+Item: chicken Price: 16.5$ Quantity: 1 Total: 16.5$
+Item: steak Price: 18.5$ Quantity: 1 Total: 18.5$
+Item: penne alla vodka Price: 12.95$ Quantity: 1 Total: 12.95$
+Total: 62.45$

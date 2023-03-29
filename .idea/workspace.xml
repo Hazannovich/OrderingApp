@@ -4,19 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e356116-bf93-49b4-9a84-092da2b275d7" name="Changes" comment="assets">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="3e356116-bf93-49b4-9a84-092da2b275d7" name="Changes" comment="Complete">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Costumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Costumer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Inventory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/InvoiceLine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/InvoiceLine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Item.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MenuRow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MenuRow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OrderingApp/OrderController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OrderingApp/OrderController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/OrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/OrderLine.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/OrderSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/OrderSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/RestaurantItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RestaurantItem.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +87,9 @@
       <workItem from="1680014471718" duration="9865000" />
       <workItem from="1680027025182" duration="164000" />
       <workItem from="1680027208455" duration="235000" />
-      <workItem from="1680027737478" duration="5365000" />
+      <workItem from="1680027737478" duration="5412000" />
+      <workItem from="1680098157271" duration="2955000" />
+      <workItem from="1680101259013" duration="756000" />
     </task>
     <task id="LOCAL-00001" summary="Order System Backend">
       <created>1679867833105</created>
@@ -133,25 +126,44 @@
       <option name="project" value="LOCAL" />
       <updated>1679948441871</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Complete">
+      <created>1680038164879</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1680038164879</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Order System Backend" />
     <MESSAGE value="Order System Frontend Template" />
     <MESSAGE value="System Quantity and add to cart interaction" />
     <MESSAGE value="assets" />
-    <option name="LAST_COMMIT_MESSAGE" value="assets" />
+    <MESSAGE value="Complete" />
+    <option name="LAST_COMMIT_MESSAGE" value="Complete" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/OrderController.java</url>
-          <line>37</line>
+          <line>38</line>
           <properties class="OrderController" method="initType">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />

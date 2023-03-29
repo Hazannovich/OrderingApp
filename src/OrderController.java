@@ -1,14 +1,15 @@
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
+import javafx.geometry.Insets;
+import javafx.scene.Node;
+import javafx.scene.control.*;
 import javafx.scene.control.ButtonBar.ButtonData;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Pair;
 
-import java.util.HashMap;
+import java.util.Optional;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class OrderController {
     private final Menu menu = new Menu("menu.txt");
@@ -82,39 +83,72 @@ public class OrderController {
     @FXML
     void orderBtnHandler(ActionEvent event) {
 
-        Alert confirmDialog = new Alert(Alert.AlertType.CONFIRMATION);
-        confirmDialog.setTitle("Confirm Order");
-        confirmDialog.setHeaderText("Continue to checkout?");
-        confirmDialog.setContentText(order.toString());
+        AtomicReference<Alert> confirmDialog = new AtomicReference<>(new Alert(Alert.AlertType.CONFIRMATION));
+        confirmDialog.get().setTitle("Confirm Order");
+        confirmDialog.get().setHeaderText("Continue to checkout?");
+        confirmDialog.get().setContentText(order.toString());
 
         // customize the confirmation dialog buttons
         ButtonType confirmButton = new ButtonType("Confirm order", ButtonData.OK_DONE);
         ButtonType editButton = new ButtonType("Edit order", ButtonData.CANCEL_CLOSE);
-        confirmDialog.getButtonTypes().clear();
-        confirmDialog.getButtonTypes().addAll(confirmButton, editButton);
+        confirmDialog.get().getButtonTypes().clear();
+        confirmDialog.get().getButtonTypes().addAll(confirmButton, editButton);
 
         // show the confirmation dialog and wait for a response
-        confirmDialog.showAndWait().ifPresent(response -> {
+        confirmDialog.get().showAndWait().ifPresent(response -> {
             if (response == confirmButton) {
                 // create a text input dialog for Name
-                TextInputDialog nameDialog = new TextInputDialog();
-                nameDialog.setTitle("Enter Name");
-                nameDialog.setHeaderText(null);
-                nameDialog.setContentText("Please enter your Name:");
-                // create a text input dialog for ID
-                TextInputDialog idDialog = new TextInputDialog();
-                idDialog.setTitle("Enter ID");
-                idDialog.setHeaderText(null);
-                idDialog.setContentText("Please enter your ID:");
-
-                // show the input dialog boxes
-                nameDialog.showAndWait();
-                String userName = nameDialog.getResult();
-                idDialog.showAndWait();
+                Dialog<Pair<String, String>> dialog = new Dialog<>();
+                dialog.setTitle("Checkout");
+                dialog.setHeaderText("Enter your Personal Details");
+                ButtonType orderButtonType = new ButtonType("Order Now", ButtonData.OK_DONE);
+                dialog.getDialogPane().getButtonTypes().addAll(orderButtonType, ButtonType.CANCEL);
                 // create a new costumer and generate a receipt in assets/receipts
-                String userId = idDialog.getResult();
-                Costumer costumer = new Costumer(userName, userId);
-                costumer.generateReceipt(order);
+                GridPane grid = new GridPane();
+                grid.setHgap(10);
+                grid.setVgap(10);
+                grid.setPadding(new Insets(20, 150, 10, 10));
+
+                TextField costumerName = new TextField();
+                costumerName.setPromptText("e.g. John");
+                TextField costumerID = new TextField();
+                costumerID.setPromptText("e.g. 123456789");
+
+                grid.add(new Label("Your Name:"), 0, 0);
+                grid.add(costumerName, 1, 0);
+                grid.add(new Label("Your ID:"), 0, 1);
+                grid.add(costumerID, 1, 1);
+
+// Enable/Disable login button depending on whether a username was entered.
+                Node orderButton = dialog.getDialogPane().lookupButton(orderButtonType);
+                orderButton.setDisable(true);
+
+                //TODO: ADD VALIDATION FOR ID AND NAME (ONLY NUMBERS AND LETTERS)
+                costumerName.textProperty().addListener((observable, oldValue, newValue) -> {
+                    orderButton.setDisable(newValue.trim().isEmpty());
+                });
+                dialog.getDialogPane().setContent(grid);
+
+
+// Convert the result to a username-password-pair when the login button is clicked.
+                dialog.setResultConverter(dialogButton -> {
+                    if (dialogButton == orderButtonType) {
+                        return new Pair<>(costumerName.getText(), costumerID.getText());
+                    }
+                    return null;
+                });
+
+                Optional<Pair<String, String>> result = dialog.showAndWait();
+
+                result.ifPresent(usernamePassword -> {
+                    Costumer costumer = new Costumer(usernamePassword.getKey(), usernamePassword.getValue());
+                    costumer.generateReceipt(order);
+                    Alert dialog2 = new Alert(Alert.AlertType.INFORMATION);
+                    dialog2.setTitle("Confirmation");
+                    dialog2.setHeaderText("Your order has been placed successfully!");
+                    dialog2.setContentText("Returning to main menu...");
+                    Optional<ButtonType> congrats = dialog2.showAndWait();
+                });
                 initialize();
             }
         });
